@@ -1,0 +1,56 @@
+import turtle
+import time
+import random
+import math 
+positions = []
+screen = turtle.Screen()
+speed = 200
+t = turtle.Turtle()
+t2 = turtle.Turtle()
+text = turtle.Turtle()
+text.speed(0)
+text.penup()
+text.hideturtle()
+text.goto(-100, 150)
+t.speed(0)
+t2.speed(0)
+t.penup()
+t2.pendown()
+t.shape("circle")
+t2.shape("circle")
+t.color("red")
+t2.color("blue")
+t.goto(0, 0)
+t2.goto(-100, 0)
+def left():
+  t.setx(t.xcor()-speed)
+def right():
+  t.setx(t.xcor()+speed)
+def up():
+  t.sety(t.ycor()+speed)
+def bottom():
+  t.sety(t.ycor()-speed)
+screen.listen()
+screen.onkey(left, "a")
+screen.onkey(right, "d")
+screen.onkey(up, "w")
+screen.onkey(bottom, "s")
+running = True
+while running:
+  turtle.tracer(0, 0)
+  text.clear()
+  time.sleep(0.5)
+  x1 = t.xcor()
+  y1 = t.ycor()
+  x2 = t2.xcor()
+  y2 = t2.ycor()
+  m = math.sqrt((x2-x1)**2 + (y2-y1)**2)
+  for x in range(100):
+  	if m <= 199:
+        t.tracer(0)
+        t2.tracer(0)
+        t2.goto(random.randint(-100, 100), random.randint(-100, 100))
+    text.write("Tracers position: "+str(t2.xcor())+","+str(t2.ycor()), font=("Arial", "20", "normal"))
+  positions.append(str(t2.xcor())+","+str(t2.ycor()))
+  print(positions)
+  screen.update()
